@@ -19,7 +19,6 @@ const Game = () => {
         } else {
           aiMove = Math.min(coins % 5 || 1, Math.floor(Math.random() * 4) + 1);
         }
-
         setCoins(coins - aiMove);
         setIsPlayerTurn(true);
       }, 1000);
@@ -33,13 +32,12 @@ const Game = () => {
       alert('Invalid move. Pick 1 to 4 coins.');
       return;
     }
-
     setCoins(coins - count);
     setIsPlayerTurn(false);
   };
 
   const navigateToResultScreen = () => {
-    navigation.navigate('Result', { isPlayerTurn });
+    navigation.navigate('Result', { isPlayerTurn: !isPlayerTurn });
     setCoins(21);
     setIsPlayerTurn(true);
   };

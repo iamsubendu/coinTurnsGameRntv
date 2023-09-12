@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const Result = (isPlayerTurn) => {
+const Result = () => {
+  const route = useRoute();
+  const receivedData = route.params?.isPlayerTurn;
   const navigation = useNavigation();
   const resetGame = () => {
-    navigation.navigate('GamePlay', {});
+    navigation.navigate('GamePlay', { receivedData });
   };
   return (
     <View style={styles.container}>
-      {isPlayerTurn ? (
+      {receivedData ? (
         <Text style={styles.resultText}>You Lose! AI Wins!</Text>
       ) : (
         <Text style={styles.resultText}>You Win! AI Loses!</Text>
